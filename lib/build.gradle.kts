@@ -76,10 +76,10 @@ afterEvaluate {
         repositories {
             maven {
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/jimdo/packages")
+                url = uri("https://maven.pkg.github.com/jimdo/packages/")
                 credentials {
-                    username = "${System.getenv("MAVEN_USERNAME")}"
-                    password = "${System.getenv("MAVEN_PASSWORD")}"
+                    username = "jimdo-bot"
+                    password = "${System.getenv("DEPLOYMENT_GITHUB_TOKEN")}"
                 }
             }
         }
