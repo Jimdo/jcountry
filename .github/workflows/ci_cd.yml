@@ -50,13 +50,13 @@ jobs:
         run: ./gradlew build
 
       - name: Generate Release
-#        if: github.ref == 'refs/heads/master'
+#        if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #          GPR_USER: "jimdo-bot"
 #          GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
         run: |
-          ./gradlew release -Prelease.useAutomaticVersion=true
+          ./gradlew release
 #          ./gradlew publish
 
 #  test:
