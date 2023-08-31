@@ -49,15 +49,13 @@ jobs:
       - name: Build Project
         run: ./gradlew build
 
-      - name: Generate Release
-#        if: github.ref == 'refs/heads/main'
+      - name: Create Release
+        id: create_release
+        uses: zendesk/action-create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          GPR_USER: "jimdo-bot"
-#          GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
-        run: |
-          ./gradlew release
-#          ./gradlew publish
+        with:
+          auto_increment_type: patch
 
 #  test:
 #    name: Test

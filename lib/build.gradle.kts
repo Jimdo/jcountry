@@ -12,11 +12,7 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     `maven-publish`
-    id("pl.allegro.tech.build.axion-release") version "1.15.3"
 }
-
-// TO BE UPDATED ON EVERY RELEASE.
-version = scmVersion.version
 
 repositories {
     // Use Maven Central for resolving dependencies.
