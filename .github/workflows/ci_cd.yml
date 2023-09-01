@@ -64,4 +64,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEPLOYMENT_GITHUB_TOKEN: ${{ secrets.DEPLOYMENT_GITHUB_TOKEN }}
         run: |
-          ./gradlew publish
+          make publish
