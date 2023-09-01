@@ -3,6 +3,8 @@ target_data_directory := lib/src/main/resources/
 target_po_directory := lib/src/main/resources/iso_3166/
 target_po_639_directory := lib/src/main/resources/iso_639/
 
+ARTIFACT_VERSION=$(shell git tag --sort=committerdate | grep -E '[0-9]' | tail -1 | cut -b 2-7)
+
 .PHONY: clone-iso-codes
 clone-iso-codes:
 	git clone https://github.com/sailfishos-mirror/iso-codes.git
@@ -28,3 +30,9 @@ delete-po-and-mo:
 
 .PHONY: get-latest-iso-files
 get-latest-iso-files: clone-iso-codes transpile-translations delete-po-and-mo
+
+.PHONY: publish
+publish:
+	@echo "[make]Publishing version $(ARTIFACT_VERSION)"
+	ARTIFACT_VERSION=$(ARTIFACT_VERSION) ./gradlew testVersion
+	ARTIFACT_VERSION=$(ARTIFACT_VERSION) ./gradlew publish

@@ -7,7 +7,7 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 group = "com.jimdo"
-
+version = System.getenv("ARTIFACT_VERSION") + ".0.0"
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
@@ -30,6 +30,10 @@ tasks.withType<Test> {
         events("PASSED", "FAILED", "SKIPPED")
         showStandardStreams = true
     }
+}
+
+tasks.register("testVersion") {
+    println("The package version is: " + version)
 }
 
 //////////////////////////////////////////

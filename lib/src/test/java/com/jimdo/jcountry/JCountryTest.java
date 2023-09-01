@@ -59,7 +59,6 @@ class JCountryTest {
 
         languages.forEach( it -> {
             Optional<ResourceBundle> bundle = countryDB.getCountriesTranslations(new Locale(it));
-            System.out.println(it);
             assertTrue(!bundle.isEmpty());
         });
     }
@@ -115,7 +114,6 @@ class JCountryTest {
 
         languages.forEach( it -> {
             Optional<ResourceBundle> bundle = languageDB.getLanguagesTranslations(new Locale(it));
-            System.out.println(it);
             assertTrue(!bundle.isEmpty(), it + " translation");
         });
     }
