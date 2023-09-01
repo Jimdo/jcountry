@@ -7,16 +7,12 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 group = "com.jimdo"
-
+version = System.getenv("ARTIFACT_VERSION") + ".0.0"
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     `maven-publish`
-    id("pl.allegro.tech.build.axion-release") version "1.15.3"
 }
-
-// TO BE UPDATED ON EVERY RELEASE.
-version = scmVersion.version
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -34,6 +30,10 @@ tasks.withType<Test> {
         events("PASSED", "FAILED", "SKIPPED")
         showStandardStreams = true
     }
+}
+
+tasks.register("testVersion") {
+    println("The package version is: " + version)
 }
 
 //////////////////////////////////////////
@@ -80,10 +80,10 @@ afterEvaluate {
         repositories {
             maven {
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/jimdo/packages")
+                url = uri("https://maven.pkg.github.com/jimdo/packages/")
                 credentials {
-                    username = "${System.getenv("MAVEN_USERNAME")}"
-                    password = "${System.getenv("MAVEN_PASSWORD")}"
+                    username = "jimdo-bot"
+                    password = "${System.getenv("DEPLOYMENT_GITHUB_TOKEN")}"
                 }
             }
         }

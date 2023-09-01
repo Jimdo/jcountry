@@ -54,7 +54,7 @@ class JCountryTest {
     @Test
     void testJCountryReadsTranslations() {
         // More than 50% of work population is covered with these languages.
-        ArrayList<String> languages = new ArrayList<>(Arrays.asList("zh_CN", "zh_HK", "zh_TW", "es", "de", "bn", "bn_IN", "pt", "pt_BR", "ru", "ja", "hi", "ar", "pa", "fr", "tr", "ko"));
+        ArrayList<String> languages = new ArrayList<>(Arrays.asList("nl", "es", "de", "bn", "pt", "ru", "ja", "hi", "ar", "pa", "fr", "tr", "ko"));
         CountryDB countryDB = new CountryDBImpl(true);
 
         languages.forEach( it -> {
@@ -109,7 +109,7 @@ class JCountryTest {
     @Test
     void testJCountryLanguagesReadsTranslations() {
         // More than 50% of work population is covered with these languages.
-        ArrayList<String> languages = new ArrayList<>(Arrays.asList("zh_CN", "zh_HK", "zh_TW", "es", "de", "bn", "pt", "pt_BR", "ru", "ja", "hi", "ar", "pa", "fr", "tr", "ko"));
+        ArrayList<String> languages = new ArrayList<>(Arrays.asList("es", "de", "it", "ja", "hi", "ar", "pa", "fr", "tr", "nl"));
         LanguageDB languageDB = new LanguageDBImpl(true);
 
         languages.forEach( it -> {

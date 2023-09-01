@@ -3,6 +3,13 @@ target_data_directory := lib/src/main/resources/
 target_po_directory := lib/src/main/resources/iso_3166/
 target_po_639_directory := lib/src/main/resources/iso_639/
 
+GIT_VERSION=$(shell git --version)
+ARTIFACT_VERSION=$(shell git tag --sort=committerdate | grep -E '[0-9]' | tail -1 | cut -b 2-7)
+ARTIFACT_VERSION_1=$(shell git tag --sort=committerdate | grep -E '[0-9]' | tail -1)
+ARTIFACT_VERSION_2=$(shell git tag --sort=committerdate | grep -E '[0-9]')
+ARTIFACT_VERSION_3=$(shell git tag --sort=committerdate)
+ARTIFACT_VERSION_4=$(shell git tag)
+
 .PHONY: clone-iso-codes
 clone-iso-codes:
 	git clone https://github.com/sailfishos-mirror/iso-codes.git
@@ -28,3 +35,10 @@ delete-po-and-mo:
 
 .PHONY: get-latest-iso-files
 get-latest-iso-files: clone-iso-codes transpile-translations delete-po-and-mo
+
+.PHONY: publish
+publish:
+	@echo "[make] GIT version $(GIT_VERSION)"
+	@echo "[make] Publishing version $(ARTIFACT_VERSION)"
+	ARTIFACT_VERSION=$(ARTIFACT_VERSION) ./gradlew testVersion
+	ARTIFACT_VERSION=$(ARTIFACT_VERSION) ./gradlew publish
